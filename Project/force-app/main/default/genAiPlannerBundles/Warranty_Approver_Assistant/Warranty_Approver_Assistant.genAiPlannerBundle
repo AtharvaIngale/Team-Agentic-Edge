@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>Internal employee assistant for OEM Warranty Claim Approvers. Operates within Slack to help approvers fetch claim details from Automotive Cloud, review Data Cloud insights, and seamlessly send or receive clarifying messages to dealership technicians via WhatsApp.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jak000001nhmP</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jak000001nhmP</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Send_msg_emp_slack_and_dealer_16jak000001nhmP</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Send_msg_emp_slack_and_dealer_16jak000001nhmP</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles sending messages to the internal Slack channel and WhatsApp messages to dealer technicians based on user requests or specific triggers.</description>
+        <developerName>Send_msg_emp_slack_and_dealer_16jak000001nhmP</developerName>
+        <genAiPluginInstructions>
+            <description>Send a message to the designated internal Slack channel with the relevant details provided by the user.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Compose and send a WhatsApp message to the dealer technician with the necessary information.</description>
+            <developerName>instruction_2</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 2</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Ensure the messages are clear, concise, and contain all required details.</description>
+            <developerName>instruction_3</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 3</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Confirm with the user if additional information is needed before sending the messages.</description>
+            <developerName>instruction_4</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 4</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the required communication channels or recipient details are missing, ask the user for clarification or escalate the issue.</description>
+            <developerName>instruction_5</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 5</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>ReplyInThread_179ak000002uihx</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>SendMessageToSlackChannel_179ak000002uihx</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>AgentAction_SendToWhatsApp_179ak000002uihx</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>GetRecordDetails_179ak000002uihx</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>SendMessageToSlackChannel_179ak000002uihx</fullName>
+            <description>Sends a message to a public or private Slack Channel.
+Messages may be in plaintext or Markdown format.
+This action is intended for group communication, announcements, or notifications within channels.
+This action should not be used to send direct messages to individuals.
+Upon successful completion, provide the user a friendly confirmation with a link to the message (in markdown).</description>
+            <developerName>SendMessageToSlackChannel_179ak000002uihx</developerName>
+            <invocationTarget>slackAgentDynamic__SendMessageToSlackChannel</invocationTarget>
+            <invocationTargetType>slack</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>SendMessageToSlackChannel</localDeveloperName>
+            <masterLabel>Send Message to a Slack Channel</masterLabel>
+            <progressIndicatorMessage>Sending message...</progressIndicatorMessage>
+            <source>Slack__SendMessageToSlackChannel</source>
+        </localActions>
+        <localActions>
+            <fullName>ReplyInThread_179ak000002uihx</fullName>
+            <description>Replies with a message in thread in a Slack channel or direct message. Messages may be in plain text or Markdown format. If no message timestamp is provided or it is ambiguous in the session context, confirm which message the user intends to reply. Upon successful completion, provide the user a friendly confirmation with a link to the message, formatted using Markdown.</description>
+            <developerName>ReplyInThread_179ak000002uihx</developerName>
+            <invocationTarget>slackAgentDynamic__ReplyInThread</invocationTarget>
+            <invocationTargetType>slack</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>ReplyInThread</localDeveloperName>
+            <masterLabel>Reply to a Slack thread</masterLabel>
+            <progressIndicatorMessage>Replying to a thread...</progressIndicatorMessage>
+            <source>Slack__ReplyInThread</source>
+        </localActions>
+        <localActions>
+            <fullName>AgentAction_SendToWhatsApp_179ak000002uihx</fullName>
+            <description>Send the message to whatsapp</description>
+            <developerName>AgentAction_SendToWhatsApp_179ak000002uihx</developerName>
+            <invocationTarget>AgentAction_SendToWhatsApp</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AgentAction_SendToWhatsApp</localDeveloperName>
+            <masterLabel>AgentAction_SendToWhatsApp</masterLabel>
+            <progressIndicatorMessage>Sending message....</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>GetRecordDetails_179ak000002uihx</fullName>
+            <description>Generates a text blob containing record details, including object fields and values and records from related lists.</description>
+            <developerName>GetRecordDetails_179ak000002uihx</developerName>
+            <invocationTarget>getDataForGrounding</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>GetRecordDetails</localDeveloperName>
+            <masterLabel>Get Record Details</masterLabel>
+            <progressIndicatorMessage>Getting details</progressIndicatorMessage>
+            <source>EmployeeCopilot__GetRecordDetails</source>
+        </localActions>
+        <localDeveloperName>Send_msg_emp_slack_and_dealer</localDeveloperName>
+        <masterLabel>Send msg emp slack and dealer</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to send messages to the internal Slack channel and WhatsApp messages to dealer technicians as requested or required. Do not perform any other tasks or provide unrelated information.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jak000001nhmP</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic is for helping answer customer&apos;s questions by searching through the knowledge articles and providing information from those articles. The questions can be about the company and its products, policies or business procedures</description>
+        <developerName>GeneralFAQ_16jak000001nhmP</developerName>
+        <genAiPluginInstructions>
+            <description>If the customer&apos;s question is too vague or general, ask for more details and clarification to give a better answer.</description>
+            <developerName>requestmoredetails</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>request-more-details</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If you are unable to help the customer even after asking clarifying questions, ask if they want to escalate this issue to a live agent.</description>
+            <developerName>unabletohelpafterclarifying</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>unable-to-help-after-clarifying</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If you are unable to answer customer&apos;s questions, ask if they want to escalate this issue to a live agent.</description>
+            <developerName>unabletoanswerquestions</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>unable-to-answer-questions</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Never provide generic information, advice or troubleshooting steps, unless retrieved from searching knowledge articles.</description>
+            <developerName>avoidgenericinformation</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>avoid-generic-information</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Include sources in your response when available from the knowledge articles, otherwise proceed without them.</description>
+            <developerName>includearticlesources</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>include-article-sources</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179ak000002uiZt</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179ak000002uiZt</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+            <developerName>AnswerQuestionsWithKnowledge_179ak000002uiZt</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is solely to help with issues and answer questions about the company, its products, procedures, or policies by searching knowledge articles.</scope>
+        <source>SvcCopilotTmpl__GeneralFAQ</source>
+    </localTopics>
+    <masterLabel>Warranty Approver Assistant</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jak000001nhmP</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jak000001nhmP</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

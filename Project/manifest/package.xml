@@ -14,5 +14,10 @@
 		<members>Warranty_Validation_Flow</members>
 		<name>Flow</name>
 	</types>
+	<types>
+		<members>Agentforce_Service_Agent</members>
+		<members>Warranty_Approver_Assistant</members>
+		<name>GenAiPlannerBundle</name>
+	</types>
 	<version>66.0</version>
 </Package>

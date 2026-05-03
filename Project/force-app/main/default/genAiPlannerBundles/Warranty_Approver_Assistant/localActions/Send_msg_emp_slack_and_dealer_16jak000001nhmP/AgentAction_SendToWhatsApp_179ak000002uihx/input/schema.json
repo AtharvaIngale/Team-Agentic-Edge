@@ -1,0 +1,21 @@
+{
+  "required" : [ "v_ClaimId", "v_MessageContent" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "v_ClaimId" : {
+      "title" : "v_ClaimId",
+      "description" : "Claim record id",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "v_MessageContent" : {
+      "title" : "v_MessageContent",
+      "description" : "Message content",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
